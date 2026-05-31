@@ -5,555 +5,190 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>fulcrum — find your point</title>
 <meta name="description" content="Financial education sessions and independent financial advice for everyday people. Based in London.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --cerulean: #5BA3C9;
-    --warm-grey: #888780;
-    --warm-white: #F7F5F1;
-    --near-black: #2A2A2A;
-    --mid-grey: #C8C6C0;
-    --light-grey: #E8E6E0;
-    --text-body: #4A4845;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--warm-white);
-    color: var(--near-black);
-    font-size: 16px;
-    line-height: 1.7;
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(247,245,241,0.92);
-    backdrop-filter: blur(8px);
-    border-bottom: 0.5px solid var(--light-grey);
-    padding: 0 2rem;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .nav-logo { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; text-decoration: none; }
-
-  .nav-wordmark {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 200;
-    font-size: 22px;
-    letter-spacing: 0.18em;
-    color: var(--cerulean);
-    line-height: 1;
-    margin-right: calc(-0.18em);
-  }
-
-  .nav-strapline {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    font-size: 8px;
-    letter-spacing: 0.22em;
-    color: var(--warm-grey);
-    line-height: 1;
-    text-transform: lowercase;
-    margin-right: calc(-0.22em);
-  }
-
-  .nav-link {
-    font-size: 13px;
-    font-weight: 400;
-    color: var(--warm-grey);
-    text-decoration: none;
-    letter-spacing: 0.02em;
-    transition: color 0.2s;
-  }
-  .nav-link:hover { color: var(--cerulean); }
-
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 100px 2rem 4rem;
-    max-width: 860px;
-    margin: 0 auto;
-  }
-
-  .hero-eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    color: var(--warm-grey);
-    text-transform: uppercase;
-    margin-bottom: 2rem;
-    font-weight: 400;
-  }
-
-  .hero h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(2.4rem, 5.5vw, 4rem);
-    line-height: 1.15;
-    font-weight: 400;
-    color: var(--near-black);
-    max-width: 720px;
-    margin-bottom: 2rem;
-  }
-
-  .hero h1 em {
-    font-style: italic;
-    color: var(--cerulean);
-  }
-
-  .hero-sub {
-    font-size: 1.05rem;
-    color: var(--text-body);
-    max-width: 520px;
-    margin-bottom: 3rem;
-    line-height: 1.75;
-    font-weight: 300;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-
-  .btn-primary {
-    display: inline-block;
-    background: var(--cerulean);
-    color: #fff;
-    padding: 0.75rem 1.75rem;
-    border-radius: 2px;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.03em;
-    text-decoration: none;
-    transition: opacity 0.2s, transform 0.15s;
-  }
-  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
-
-  .btn-ghost {
-    display: inline-block;
-    color: var(--warm-grey);
-    padding: 0.75rem 0;
-    font-size: 14px;
-    font-weight: 400;
-    text-decoration: none;
-    border-bottom: 0.5px solid var(--mid-grey);
-    transition: color 0.2s, border-color 0.2s;
-    letter-spacing: 0.02em;
-  }
-  .btn-ghost:hover { color: var(--near-black); border-color: var(--near-black); }
-
-  /* ── DIVIDER ── */
-  .rule {
-    border: none;
-    border-top: 0.5px solid var(--light-grey);
-    margin: 0;
-  }
-
-  /* ── SECTIONS ── */
-  section { padding: 5rem 2rem; max-width: 860px; margin: 0 auto; }
-
-  .section-label {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--cerulean);
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-  }
-
-  section h2 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-    font-weight: 400;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
-    color: var(--near-black);
-  }
-
-  section h2 em {
-    font-style: italic;
-    color: var(--cerulean);
-  }
-
-  .body-text {
-    color: var(--text-body);
-    max-width: 580px;
-    font-weight: 300;
-    line-height: 1.8;
-  }
-
-  /* ── PROBLEM SECTION ── */
-  .stat-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 0;
-    margin: 3rem 0;
-    border: 0.5px solid var(--light-grey);
-  }
-
-  .stat-item {
-    padding: 2rem 1.75rem;
-    border-right: 0.5px solid var(--light-grey);
-  }
-  .stat-item:last-child { border-right: none; }
-
-  .stat-number {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.6rem;
-    color: var(--cerulean);
-    line-height: 1;
-    margin-bottom: 0.5rem;
-  }
-
-  .stat-label {
-    font-size: 13px;
-    color: var(--warm-grey);
-    font-weight: 300;
-    line-height: 1.5;
-  }
-
-  /* ── WHO WE SERVE ── */
-  .groups-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2.5rem;
-  }
-
-  .group-card {
-    border: 0.5px solid var(--light-grey);
-    padding: 2rem 1.75rem;
-    position: relative;
-    transition: border-color 0.2s;
-  }
-  .group-card:hover { border-color: var(--cerulean); }
-
-  .group-tag {
-    display: inline-block;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--cerulean);
-    background: rgba(91,163,201,0.08);
-    padding: 3px 8px;
-    margin-bottom: 1rem;
-    font-weight: 500;
-  }
-
-  .group-card h3 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.25rem;
-    font-weight: 400;
-    margin-bottom: 0.75rem;
-    color: var(--near-black);
-  }
-
-  .group-card p {
-    font-size: 14px;
-    color: var(--text-body);
-    font-weight: 300;
-    line-height: 1.7;
-  }
-
-  /* ── ABOUT ── */
-  .about-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-
-  @media (max-width: 640px) {
-    .about-layout { grid-template-columns: 1fr; gap: 2rem; }
-  }
-
-  .credentials-list {
-    list-style: none;
-    margin-top: 2rem;
-  }
-  .credentials-list li {
-    font-size: 13px;
-    color: var(--warm-grey);
-    padding: 0.6rem 0;
-    border-bottom: 0.5px solid var(--light-grey);
-    font-weight: 300;
-    display: flex;
-    gap: 0.75rem;
-    align-items: baseline;
-  }
-  .credentials-list li::before {
-    content: '—';
-    color: var(--cerulean);
-    flex-shrink: 0;
-    font-size: 11px;
-  }
-
-  .fca-box {
-    background: rgba(91,163,201,0.06);
-    border: 0.5px solid rgba(91,163,201,0.3);
-    padding: 1.25rem 1.5rem;
-    margin-top: 2rem;
-  }
-
-  .fca-box p {
-    font-size: 12px;
-    color: var(--warm-grey);
-    line-height: 1.7;
-    font-weight: 300;
-  }
-
-  .fca-box strong {
-    color: var(--text-body);
-    font-weight: 500;
-  }
-
-  /* ── SESSIONS ── */
-  .sessions-intro { max-width: 560px; margin-bottom: 3rem; }
-
-  .session-item {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 2rem;
-    padding: 2rem 0;
-    border-bottom: 0.5px solid var(--light-grey);
-    align-items: center;
-  }
-  .session-item:first-of-type { border-top: 0.5px solid var(--light-grey); }
-
-  .session-item h3 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.2rem;
-    font-weight: 400;
-    margin-bottom: 0.4rem;
-  }
-
-  .session-item p {
-    font-size: 14px;
-    color: var(--text-body);
-    font-weight: 300;
-  }
-
-  .session-meta {
-    text-align: right;
-    flex-shrink: 0;
-  }
-
-  .session-price {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.4rem;
-    color: var(--cerulean);
-  }
-
-  .session-detail {
-    font-size: 12px;
-    color: var(--warm-grey);
-    margin-top: 2px;
-  }
-
-  .coming-soon {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--warm-grey);
-    background: var(--light-grey);
-    padding: 3px 8px;
-  }
-
-  /* ── CONTACT ── */
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-top: 2.5rem;
-  }
-
-  @media (max-width: 560px) {
-    .contact-grid { grid-template-columns: 1fr; }
-    .stat-item { border-right: none; border-bottom: 0.5px solid var(--light-grey); }
-    .session-item { grid-template-columns: 1fr; gap: 1rem; }
-    .session-meta { text-align: left; }
-  }
-
-  .contact-method { margin-bottom: 1.5rem; }
-  .contact-method-label {
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--warm-grey);
-    font-weight: 500;
-    margin-bottom: 0.4rem;
-  }
-  .contact-method a {
-    color: var(--near-black);
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 400;
-    border-bottom: 0.5px solid var(--mid-grey);
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .contact-method a:hover { color: var(--cerulean); border-color: var(--cerulean); }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--near-black);
-    color: rgba(247,245,241,0.5);
-    padding: 3rem 2rem;
-  }
-
-  .footer-inner {
-    max-width: 860px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 2rem;
-  }
-
-  .footer-logo-wordmark {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 200;
-    font-size: 18px;
-    letter-spacing: 0.18em;
-    color: rgba(91,163,201,0.7);
-    margin-right: calc(-0.18em);
-  }
-
-  .footer-legal {
-    font-size: 11px;
-    line-height: 1.8;
-    max-width: 440px;
-    font-weight: 300;
-  }
-
-  .footer-legal a {
-    color: rgba(247,245,241,0.5);
-    text-decoration: underline;
-  }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(18px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-eyebrow { animation: fadeUp 0.6s ease both; animation-delay: 0.1s; }
-  .hero h1      { animation: fadeUp 0.7s ease both; animation-delay: 0.25s; }
-  .hero-sub     { animation: fadeUp 0.7s ease both; animation-delay: 0.4s; }
-  .hero-actions { animation: fadeUp 0.7s ease both; animation-delay: 0.55s; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--cerulean:#5BA3C9;--warm-grey:#888780;--warm-white:#F7F5F1;--near-black:#2A2A2A;--mid-grey:#C8C6C0;--rule:#E0DDD8;--text-body:#4A4845}
+html{scroll-behavior:smooth}
+body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--warm-white);color:var(--near-black);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.logo-lockup{display:inline-flex;align-items:flex-end;text-decoration:none}
+.logo-text-block{display:flex;flex-direction:column;align-items:flex-end}
+.logo-wordmark{font-weight:200;font-size:24px;letter-spacing:5px;color:var(--cerulean);line-height:1;white-space:nowrap;margin-right:-5px}
+.logo-strapline{font-weight:300;font-size:8px;letter-spacing:3px;color:var(--warm-grey);white-space:nowrap;margin-top:4px;margin-right:-3px;line-height:1}
+.logo-gap{width:8px;flex-shrink:0}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(247,245,241,0.94);backdrop-filter:blur(10px);border-bottom:0.5px solid var(--rule);padding:0 2.5rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-right{display:flex;align-items:center;gap:2rem}
+.nav-link{font-size:13px;font-weight:400;color:var(--warm-grey);text-decoration:none;letter-spacing:0.03em;transition:color 0.2s}
+.nav-link:hover{color:var(--cerulean)}
+.tooltip-wrap{position:relative;display:inline-block}
+.tooltip-wrap .tooltip{visibility:hidden;opacity:0;background:var(--near-black);color:rgba(247,245,241,0.85);font-size:11px;font-weight:300;line-height:1.6;padding:0.65rem 0.9rem;position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);width:240px;text-align:center;transition:opacity 0.2s;pointer-events:none;z-index:200;text-transform:none;letter-spacing:0.02em}
+.tooltip-wrap .tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--near-black)}
+.tooltip-wrap:hover .tooltip{visibility:visible;opacity:1}
+.btn-pending{display:inline-block;background:var(--mid-grey);color:#fff;padding:0.8rem 2rem;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;font-family:inherit;cursor:not-allowed}
+.nav-cta-disabled{font-size:12px;font-weight:500;letter-spacing:0.06em;border:0.5px solid var(--mid-grey);padding:0.45rem 1rem;text-transform:uppercase;color:var(--mid-grey);cursor:not-allowed;display:inline-block}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 2.5rem 5rem;max-width:900px;margin:0 auto}
+.hero-eyebrow{font-size:10px;letter-spacing:0.22em;color:var(--warm-grey);text-transform:uppercase;font-weight:400;margin-bottom:2.5rem}
+.hero h1{font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.1;font-weight:200;color:var(--near-black);letter-spacing:-0.01em;max-width:740px;margin-bottom:2rem}
+.hero h1 strong{font-weight:400;color:var(--cerulean)}
+.hero-sub{font-size:1rem;color:var(--text-body);max-width:520px;font-weight:300;line-height:1.85;margin-bottom:3rem}
+.hero-actions{display:flex;gap:1.25rem;flex-wrap:wrap;align-items:center}
+.btn-primary{display:inline-block;background:var(--cerulean);color:#fff;padding:0.8rem 2rem;font-size:12px;font-weight:500;letter-spacing:0.1em;text-decoration:none;text-transform:uppercase;font-family:inherit;transition:opacity 0.2s,transform 0.15s}
+.btn-primary:hover{opacity:0.85;transform:translateY(-1px)}
+.btn-ghost{display:inline-block;color:var(--warm-grey);padding:0.8rem 0;font-size:12px;font-weight:400;text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;border-bottom:0.5px solid var(--mid-grey);transition:color 0.2s,border-color 0.2s}
+.btn-ghost:hover{color:var(--near-black);border-color:var(--near-black)}
+.page-rule{border:none;border-top:0.5px solid var(--rule);margin:0}
+section{padding:5.5rem 2.5rem;max-width:900px;margin:0 auto}
+.section-label{font-size:9px;letter-spacing:0.24em;text-transform:uppercase;color:var(--cerulean);font-weight:500;margin-bottom:2rem}
+section h2{font-size:clamp(1.6rem,3.2vw,2.4rem);font-weight:200;line-height:1.15;letter-spacing:-0.01em;margin-bottom:1.5rem;color:var(--near-black)}
+section h2 strong{font-weight:400;color:var(--cerulean)}
+.body-text{color:var(--text-body);max-width:560px;font-weight:300;line-height:1.85;font-size:15px}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);margin:3.5rem 0;border:0.5px solid var(--rule)}
+.stat-item{padding:2.25rem 2rem;border-right:0.5px solid var(--rule)}
+.stat-item:last-child{border-right:none}
+.stat-number{font-size:2.8rem;font-weight:200;color:var(--cerulean);line-height:1;letter-spacing:-0.02em;margin-bottom:0.6rem}
+.stat-label{font-size:12px;color:var(--warm-grey);font-weight:300;line-height:1.6}
+.groups-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:3rem;border:0.5px solid var(--rule)}
+.group-card{padding:2.25rem 2rem;border-right:0.5px solid var(--rule);transition:background 0.2s}
+.group-card:last-child{border-right:none}
+.group-card:hover{background:rgba(91,163,201,0.03)}
+.group-tag{display:block;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--cerulean);font-weight:500;margin-bottom:1rem}
+.group-card h3{font-size:1rem;font-weight:400;margin-bottom:0.75rem;color:var(--near-black)}
+.group-card p{font-size:13px;color:var(--text-body);font-weight:300;line-height:1.75}
+.about-layout{display:grid;grid-template-columns:1.2fr 0.8fr;gap:5rem;align-items:start}
+.credentials-list{list-style:none;border-top:0.5px solid var(--rule)}
+.credentials-list li{font-size:12px;color:var(--warm-grey);padding:0.75rem 0;border-bottom:0.5px solid var(--rule);font-weight:300;line-height:1.6;display:flex;gap:0.75rem;align-items:baseline}
+.credentials-list li::before{content:'—';color:var(--cerulean);flex-shrink:0;font-size:10px}
+.fca-box{margin-top:2.5rem;padding:1.25rem 1.5rem;border-left:2px solid var(--cerulean);background:rgba(91,163,201,0.04)}
+.fca-box p{font-size:12px;color:var(--warm-grey);line-height:1.75;font-weight:300}
+.fca-box strong{color:var(--text-body);font-weight:500}
+.session-item{display:grid;grid-template-columns:1fr auto;gap:2rem;padding:2rem 0;border-bottom:0.5px solid var(--rule);align-items:start}
+.session-item:first-of-type{border-top:0.5px solid var(--rule)}
+.session-item h3{font-size:1rem;font-weight:400;margin-bottom:0.4rem;color:var(--near-black)}
+.session-item p{font-size:13px;color:var(--text-body);font-weight:300;line-height:1.7;max-width:520px}
+.session-series-note{display:inline-block;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--cerulean);font-weight:500;margin-bottom:0.5rem}
+.session-meta{text-align:right;flex-shrink:0;padding-top:2px}
+.badge-2026{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--warm-grey);border:0.5px solid var(--rule);padding:4px 10px;font-weight:400;white-space:nowrap}
+.badge-upcoming{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--cerulean);border:0.5px solid rgba(91,163,201,0.4);padding:4px 10px;font-weight:400;white-space:nowrap}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:3rem}
+.contact-method{margin-bottom:2rem}
+.contact-label{font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--warm-grey);font-weight:500;margin-bottom:0.5rem}
+.contact-method a{color:var(--near-black);text-decoration:none;font-size:14px;font-weight:300;border-bottom:0.5px solid var(--mid-grey);padding-bottom:1px;transition:color 0.2s,border-color 0.2s}
+.contact-method a:hover{color:var(--cerulean);border-color:var(--cerulean)}
+.contact-pending{color:var(--mid-grey);font-size:14px;font-weight:300;border-bottom:0.5px solid var(--rule);padding-bottom:1px;cursor:not-allowed;display:inline-block}
+.contact-pending-note{display:block;font-size:11px;color:var(--mid-grey);font-weight:300;margin-top:0.4rem;font-style:italic}
+.company-detail{font-size:12px;color:var(--warm-grey);font-weight:300;line-height:2}
+footer{background:var(--near-black);padding:3.5rem 2.5rem;border-top:2px solid var(--cerulean)}
+.footer-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:4rem;align-items:start}
+.footer-logo-block{display:inline-flex;align-items:flex-end}
+.footer-text-block{display:flex;flex-direction:column;align-items:flex-end}
+.footer-wordmark{font-weight:200;font-size:18px;letter-spacing:4px;color:rgba(91,163,201,0.7);margin-right:-4px;display:block;line-height:1}
+.footer-strapline{font-weight:300;font-size:6px;letter-spacing:2px;color:rgba(136,135,128,0.6);display:block;margin-top:3px;margin-right:-2px;line-height:1}
+.footer-logo-gap{width:6px;flex-shrink:0}
+.footer-legal{font-size:11px;color:rgba(247,245,241,0.38);line-height:1.9;font-weight:300}
+.footer-legal a{color:rgba(91,163,201,0.6);text-decoration:underline}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.hero-eyebrow{animation:fadeUp 0.5s ease both 0.1s}
+.hero h1{animation:fadeUp 0.6s ease both 0.2s}
+.hero-sub{animation:fadeUp 0.6s ease both 0.35s}
+.hero-actions{animation:fadeUp 0.6s ease both 0.5s}
+@media(max-width:700px){
+  nav{padding:0 1.25rem}
+  .nav-link{display:none}
+  .hero{padding:100px 1.25rem 4rem}
+  section{padding:4rem 1.25rem}
+  .hero h1{font-size:2rem}
+  .stat-row,.groups-grid{grid-template-columns:1fr}
+  .stat-item{border-right:none;border-bottom:0.5px solid var(--rule)}
+  .stat-item:last-child{border-bottom:none}
+  .group-card{border-right:none;border-bottom:0.5px solid var(--rule)}
+  .group-card:last-child{border-bottom:none}
+  .about-layout,.contact-grid{grid-template-columns:1fr;gap:2.5rem}
+  .session-item{grid-template-columns:1fr;gap:0.75rem}
+  .session-meta{text-align:left}
+  .footer-inner{grid-template-columns:1fr;gap:2rem}
+  .tooltip-wrap .tooltip{width:200px;font-size:10px}
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo" aria-label="fulcrum home">
-    <span class="nav-wordmark">fulcrum</span>
-    <span class="nav-strapline">find your point</span>
+  <a href="#" class="logo-lockup" aria-label="fulcrum home">
+    <div class="logo-text-block">
+      <span class="logo-wordmark">fulcrum</span>
+      <span class="logo-strapline">find your point</span>
+    </div>
+    <div class="logo-gap"></div>
+    <svg width="84" height="36" viewBox="0 0 84 36" aria-hidden="true" style="flex-shrink:0;display:block;margin-bottom:2px;">
+      <line x1="4" y1="36" x2="80" y2="0" stroke="#888780" stroke-width="0.9" stroke-linecap="round"/>
+      <circle cx="4" cy="32" r="4" fill="#5BA3C9"/>
+      <polygon points="38,20 30,36 46,36" fill="#5BA3C9"/>
+    </svg>
   </a>
-  <a href="#contact" class="nav-link">Get in touch</a>
+  <div class="nav-right">
+    <a href="#sessions" class="nav-link">Sessions</a>
+    <a href="#about" class="nav-link">About</a>
+    <span class="tooltip-wrap">
+      <span class="nav-cta-disabled">Book a conversation</span>
+      <span class="tooltip">Available once fulcrum holds Direct Authorisation from the FCA to offer personal financial advice.</span>
+    </span>
+  </div>
 </nav>
 
-<!-- HERO -->
 <div class="hero" role="banner">
-  <p class="hero-eyebrow">Financial Education &amp; Independent Advice · London</p>
-  <h1>Most people know they should do<br><em>more with their money.</em><br>Very few ever do.</h1>
-  <p class="hero-sub">Not because they lack information. Because no one has ever sat down with them and made it feel real, simple, and worth acting on. That is what fulcrum is for.</p>
+  <p class="hero-eyebrow">Financial Education &amp; Independent Advice &nbsp;·&nbsp; London</p>
+  <h1>Most people know they should<br>do <strong>more with their money.</strong><br>Very few ever do.</h1>
+  <p class="hero-sub">Financial neglect is almost never a knowledge problem — it is an access problem. The right information, explained clearly and at the right moment, can have a disproportionately positive impact on your long-term financial health. That is what fulcrum is for.</p>
   <div class="hero-actions">
-    <a href="https://outlook.office.com/bookwithme/user/a4c6953e8e7a480ea1144832d265ae1d@fulcrumifa.co.uk/meetingtype/tHuUDZBmak2b9Lp9xsznfg2?anonymous&ismsaljsauthenabled&ep=mcard" class="btn-primary" target="_blank" rel="noopener">Book a conversation</a>
-    <a href="#sessions" class="btn-ghost">See our sessions</a>
+    <span class="tooltip-wrap">
+      <span class="btn-pending">Book a conversation</span>
+      <span class="tooltip">Available once fulcrum holds Direct Authorisation from the FCA to offer personal financial advice.</span>
+    </span>
+    <a href="https://www.eventbrite.com/o/fulcrum-121408370940" class="btn-ghost" target="_blank" rel="noopener">See our sessions</a>
   </div>
 </div>
 
-<hr class="rule">
+<hr class="page-rule">
 
-<!-- PROBLEM -->
-<section id="why" aria-labelledby="why-heading">
+<section id="why">
   <p class="section-label">The problem</p>
-  <h2 id="why-heading">The advice gap is<br><em>not a knowledge gap.</em></h2>
-  <p class="body-text">Millions of people in the UK are losing money not to bad decisions but to no decisions at all. Pensions left in default funds. ISA allowances unused year after year. The cost of inaction is not zero — it compounds.</p>
-
-  <div class="stat-row" role="list">
-    <div class="stat-item" role="listitem">
-      <div class="stat-number">27m</div>
-      <div class="stat-label">UK adults with no<br>financial advice relationship</div>
-    </div>
-    <div class="stat-item" role="listitem">
-      <div class="stat-number">£18k</div>
-      <div class="stat-label">Average pension pot<br>below recommended minimum</div>
-    </div>
-    <div class="stat-item" role="listitem">
-      <div class="stat-number">10yr</div>
-      <div class="stat-label">Typical delay before<br>acting on financial plans</div>
-    </div>
+  <h2>The advice gap is<br><strong>not a knowledge gap.</strong></h2>
+  <p class="body-text">Our focus is financial hygiene — the foundational habits and decisions that determine whether you own your financial future or are perpetually buffeted by day-to-day pressures. Pensions, ISAs, credit, property — the mechanics are not complicated. They are just rarely explained to the people who need them most.</p>
+  <div class="stat-row">
+    <div class="stat-item"><div class="stat-number">27m</div><div class="stat-label">UK adults with no<br>financial advice relationship</div></div>
+    <div class="stat-item"><div class="stat-number">£18k</div><div class="stat-label">Average pension pot<br>below recommended minimum</div></div>
+    <div class="stat-item"><div class="stat-number">10yr</div><div class="stat-label">Typical delay before<br>acting on financial plans</div></div>
   </div>
-
-  <p class="body-text">The financial services industry was built for people who already have wealth. fulcrum was built for everyone else — particularly those with the most to gain from getting started now.</p>
+  <p class="body-text">The financial services industry was built for people who already have wealth. fulcrum is being built for everyone else — particularly those with the most to gain from getting started now.</p>
 </section>
 
-<hr class="rule">
+<hr class="page-rule">
 
-<!-- WHO WE SERVE -->
-<section id="who" aria-labelledby="who-heading">
+<section id="who">
   <p class="section-label">Who we work with</p>
-  <h2 id="who-heading">The largest marginal<br><em>impact potential.</em></h2>
-  <p class="body-text">We focus on people whose financial lives could be transformed by one clear conversation. Not exclusively wealthy clients — the people financial services routinely passes over.</p>
-
+  <h2>The largest<br><strong>marginal impact potential.</strong></h2>
+  <p class="body-text">Simple, targeted changes can compound into dramatically better long-term outcomes. We focus on the people financial services has routinely passed over — those for whom one clear conversation can change everything.</p>
   <div class="groups-grid">
-    <div class="group-card">
-      <span class="group-tag">Tradespeople</span>
-      <h3>Self-employed &amp; independent</h3>
-      <p>Builders, electricians, plumbers — high earning, no employer pension, no one explaining the VAT threshold trap or the cost of leaving retirement unplanned.</p>
-    </div>
-    <div class="group-card">
-      <span class="group-tag">Young professionals</span>
-      <h3>Early career, long runway</h3>
-      <p>Nurses, engineers, developers — employer match going unclaimed, ISA discipline not yet built, pension default fund quietly underperforming for years.</p>
-    </div>
-    <div class="group-card">
-      <span class="group-tag">Underserved communities</span>
-      <h3>Historically overlooked</h3>
-      <p>Ethnic minority communities in the UK are significantly less likely to hold investments or have a pension above minimum levels. Language, trust, and access are all barriers we aim to reduce.</p>
-    </div>
+    <div class="group-card"><span class="group-tag">Young professionals</span><h3>Early career, long runway</h3><p>Nurses, engineers, developers — employer match going unclaimed, ISA discipline not yet built, pension default fund quietly underperforming for years.</p></div>
+    <div class="group-card"><span class="group-tag">Tradespeople</span><h3>Self-employed &amp; independent</h3><p>Builders, electricians, plumbers — high-earning, no employer pension, no one explaining the VAT threshold trap or the true cost of leaving retirement unplanned.</p></div>
+    <div class="group-card"><span class="group-tag">Underserved communities</span><h3>Historically overlooked</h3><p>Ethnic minority communities in the UK are significantly less likely to hold investments or maintain a pension above minimum levels. Language, trust, and access are barriers we aim to reduce.</p></div>
   </div>
 </section>
 
-<hr class="rule">
+<hr class="page-rule">
 
-<!-- ABOUT RAHUL -->
-<section id="about" aria-labelledby="about-heading">
+<section id="about">
   <p class="section-label">About</p>
   <div class="about-layout">
     <div>
-      <h2 id="about-heading">Markets veteran.<br><em>Now accessible.</em></h2>
-      <p class="body-text" style="margin-bottom: 1rem;">Rahul Mani spent over a decade at the centre of global credit markets — Barclays Capital New York and London, then Calyon Crédit Agricole CIB as European Head of Investment Grade Credit Trading.</p>
-      <p class="body-text">He left institutional finance to build something different: independent financial guidance for the people it has always been hardest to reach.</p>
+      <h2>Markets veteran.<br><strong>Now accessible.</strong></h2>
+      <p class="body-text" style="margin-bottom:1.25rem;">Rahul comes from a credit trading background on Wall Street and the City, and was previously FCA-registered as an institutional investment adviser. He founded fulcrum — a financial education and advice practice for people who have been underserved by financial services.</p>
       <div class="fca-box">
-        <p><strong>Regulatory note.</strong> Rahul was previously FCA registered (IRN: RGM01078) as CF21 Investment Adviser and CF30 Customer until 2009. fulcrum is currently pursuing Direct Authorisation with the FCA. Our present sessions are generic financial education — not personal regulated advice. Full authorisation is expected in 2026.</p>
+        <p><strong>Regulatory note.</strong> Rahul was previously FCA registered (IRN: RGM01078) as CF21 Investment Adviser and CF30 Customer until 2009. fulcrum is currently pursuing Direct Authorisation with the FCA. Our present sessions are generic financial education — not personal regulated advice. Full authorisation expected in 2026.</p>
       </div>
     </div>
     <div>
-      <ul class="credentials-list" aria-label="Career highlights">
-        <li>Barclays Capital, New York &amp; London — Director, Global Credit Derivatives</li>
-        <li>Calyon Crédit Agricole CIB, London — Executive Director, European Head of IG Credit Trading</li>
-        <li>FCA registered CF21 &amp; CF30, 2009</li>
+      <ul class="credentials-list">
+        <li>FCA registered CF21 Investment Adviser &amp; CF30 Customer until 2009 (IRN: RGM01078)</li>
         <li>Whole-of-market IFA approach — ISAs, SIPPs, OEICs, ETFs, Investment Trusts</li>
         <li>Fixed fee, one-off advice model — no ongoing commission, no hidden charges</li>
         <li>Direct Authorisation application in progress, 2026</li>
@@ -562,99 +197,76 @@
   </div>
 </section>
 
-<hr class="rule">
+<hr class="page-rule">
 
-<!-- SESSIONS -->
-<section id="sessions" aria-labelledby="sessions-heading">
+<section id="sessions">
   <p class="section-label">Sessions</p>
-  <h2 id="sessions-heading">Small groups.<br><em>Real conversations.</em></h2>
-  <div class="sessions-intro">
-    <p class="body-text">We run 90-minute financial education sessions — generic, practical, and jargon-free. Groups of 6–12. No sales pitch, no product push. Just the information most people should have been given years ago.</p>
-  </div>
-
+  <h2>Small groups.<br><strong>Real conversations.</strong></h2>
+  <p class="body-text" style="margin-bottom:0.75rem;">We run 90-minute financial education sessions — generic, practical, and jargon-free. Groups of 6–10. No sales pitch, no product push.</p>
+  <p class="body-text" style="margin-bottom:3rem;">Below are the first sessions from an ongoing series for each group. Each series builds progressively — the first session covers foundations; subsequent sessions go deeper.</p>
   <div class="session-item">
-    <div>
-      <h3>The Trades Session</h3>
-      <p>SIPP vs sole trader pension. The VAT threshold trap. Why your house is not your pension. Built for self-employed tradespeople and independent contractors.</p>
-    </div>
-    <div class="session-meta">
-      <div class="session-price">£25</div>
-      <div class="session-detail">per person · 90 min</div>
-    </div>
+    <div><span class="session-series-note">Young Professionals · Session 1 of a series</span><h3>Financial foundations for early careers</h3><p>Employer match, ISA discipline, pension default fund problems, and the NIC clock. For those early enough in their career that every year still matters enormously.</p></div>
+    <div class="session-meta"><span class="badge-upcoming">Upcoming</span></div>
   </div>
-
   <div class="session-item">
-    <div>
-      <h3>The Young Professional Session</h3>
-      <p>Employer match, ISA discipline, pension default fund problems, and the NIC clock. For those early enough in their career that every year still matters enormously.</p>
-    </div>
-    <div class="session-meta">
-      <div class="session-price">£25</div>
-      <div class="session-detail">per person · 90 min</div>
-    </div>
+    <div><span class="session-series-note">Tradespeople · Session 1 of a series</span><h3>Financial foundations for the self-employed</h3><p>SIPP vs sole trader pension. The VAT threshold trap. Why your house is not your pension. Built for self-employed tradespeople and independent contractors.</p></div>
+    <div class="session-meta"><span class="badge-upcoming">Upcoming</span></div>
   </div>
-
   <div class="session-item">
-    <div>
-      <h3>The Community Session</h3>
-      <p>Plain-English financial foundations for those who have never had access to this kind of conversation. Available in multiple languages where demand warrants.</p>
-    </div>
-    <div class="session-meta">
-      <div class="session-price">£25</div>
-      <div class="session-detail">per person · 90 min</div>
-    </div>
+    <div><span class="session-series-note">Community · Session 1 of a series</span><h3>Financial foundations — plain English</h3><p>Pensions, ISAs, credit, and protection — explained clearly for those who have never had access to this kind of conversation. Available in multiple languages where demand warrants.</p></div>
+    <div class="session-meta"><span class="badge-upcoming">Upcoming</span></div>
   </div>
-
   <div class="session-item">
-    <div>
-      <h3>One-to-one advice</h3>
-      <p>Personal independent financial advice — fixed fee, whole-of-market, no ongoing retainer. Available once fulcrum holds full FCA Direct Authorisation.</p>
-    </div>
-    <div class="session-meta">
-      <span class="coming-soon">2026</span>
-    </div>
+    <div><h3>One-to-one advice</h3><p>Personal independent financial advice — fixed fee, whole-of-market, no ongoing retainer. Available once fulcrum holds full FCA Direct Authorisation.</p></div>
+    <div class="session-meta"><span class="badge-2026">2026</span></div>
+  </div>
+  <div style="margin-top:2rem;">
+    <a href="https://www.eventbrite.com/o/fulcrum-121408370940" class="btn-primary" target="_blank" rel="noopener">View all sessions on Eventbrite</a>
   </div>
 </section>
 
-<hr class="rule">
+<hr class="page-rule">
 
-<!-- CONTACT -->
-<section id="contact" aria-labelledby="contact-heading">
+<section id="contact">
   <p class="section-label">Contact</p>
-  <h2 id="contact-heading">Start a<br><em>conversation.</em></h2>
-  <p class="body-text">No phone number, no hold music. Just a direct line to Rahul — by email or by booking a time that works for you.</p>
-
+  <h2>Start a<br><strong>conversation.</strong></h2>
+  <p class="body-text">No hold music. No queues. A direct line to Rahul — by email, or book a time once fulcrum holds FCA Direct Authorisation.</p>
   <div class="contact-grid">
     <div>
       <div class="contact-method">
-        <div class="contact-method-label">Email</div>
+        <div class="contact-label">Email</div>
         <a href="mailto:rahul@fulcrumifa.co.uk">rahul@fulcrumifa.co.uk</a>
       </div>
       <div class="contact-method">
-        <div class="contact-method-label">Book a conversation</div>
-        <a href="https://outlook.office.com/bookwithme/user/a4c6953e8e7a480ea1144832d265ae1d@fulcrumifa.co.uk/meetingtype/tHuUDZBmak2b9Lp9xsznfg2?anonymous&ismsaljsauthenabled&ep=mcard" target="_blank" rel="noopener">Schedule via Microsoft Bookings →</a>
+        <div class="contact-label">Book a conversation</div>
+        <span class="tooltip-wrap">
+          <span class="contact-pending">Schedule via Microsoft Bookings</span>
+          <span class="tooltip" style="left:0;transform:none;">Available once fulcrum holds Direct Authorisation from the FCA to offer personal financial advice.</span>
+        </span>
+        <span class="contact-pending-note">Available once FCA Direct Authorisation is confirmed.</span>
       </div>
     </div>
     <div>
-      <p style="font-size: 13px; color: var(--warm-grey); font-weight: 300; line-height: 1.8;">
-        fulcrum is a trading name of Kibo Integral Tech Limited<br>
-        Company No. 15322474 · Registered in England &amp; Wales<br>
-        53 Sheen Lane, London SW14 8AB<br><br>
-        FCA Direct Authorisation pending.
-      </p>
+      <p class="company-detail">fulcrum is a trading name of<br>Kibo Integral Tech Limited<br>Company No. 15322474<br>Registered in England &amp; Wales<br>53 Sheen Lane, London SW14 8AB<br><br>FCA Direct Authorisation pending.</p>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div>
-      <div class="footer-logo-wordmark">fulcrum</div>
+    <div class="footer-logo-block">
+      <div class="footer-text-block">
+        <span class="footer-wordmark">fulcrum</span>
+        <span class="footer-strapline">find your point</span>
+      </div>
+      <div class="footer-logo-gap"></div>
+      <svg width="64" height="28" viewBox="0 0 64 28" aria-hidden="true" style="flex-shrink:0;display:block;align-self:flex-end;margin-bottom:1px;">
+        <line x1="3" y1="28" x2="61" y2="0" stroke="rgba(136,135,128,0.5)" stroke-width="0.9" stroke-linecap="round"/>
+        <circle cx="3" cy="25" r="3" fill="rgba(91,163,201,0.65)"/>
+        <polygon points="29,15 23,28 35,28" fill="rgba(91,163,201,0.65)"/>
+      </svg>
     </div>
-    <p class="footer-legal">
-      fulcrum is a trading name of Kibo Integral Tech Limited (Co. No. 15322474), registered in England &amp; Wales. fulcrum is not yet authorised and regulated by the Financial Conduct Authority. Current sessions are generic financial education and do not constitute personal financial advice. Investments can go down as well as up. Past performance is not a guide to future returns. For regulated financial advice, you should consult an FCA authorised firm. <a href="https://register.fca.org.uk" target="_blank" rel="noopener">Check the FCA register.</a>
-    </p>
+    <p class="footer-legal">fulcrum is a trading name of Kibo Integral Tech Limited (Co. No. 15322474), registered in England &amp; Wales. fulcrum is not yet authorised and regulated by the Financial Conduct Authority. Current sessions constitute generic financial education and do not constitute personal financial advice regulated under FSMA 2000. Investments can fall as well as rise in value. Past performance is not a reliable indicator of future returns. For regulated financial advice, please consult an FCA authorised firm. <a href="https://register.fca.org.uk/s/individual?id=003b000000LUfDuAAL" target="_blank" rel="noopener">Check the FCA register.</a></p>
   </div>
 </footer>
 
